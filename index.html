@@ -1,258 +1,188 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <meta name="title" content="For My Love">
+    <meta name="title" content="c">
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- 引入自定义字体 -->
     <style type="text/css">
         @font-face {
             font-family: digit;
             src: url('digital.ttf') format("truetype");
         }
-        
+
+        /* ====== 整体背景与布局（保持原有结构） ====== */
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #fdc9d1, #ffe6f0, #d4e7ff);
-            font-size: 12px;
-            overflow: auto;
+            background-color: #111;
+            color: #fff;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
         #mainDiv {
             width: 100%;
-            height: 100%;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
+        /* ====== 左侧文字区域（优化部分） ====== */
         #code {
-            position: relative;
-            width: 440px;
-            margin-top: 60px !important;
-            height: 400px;
-            color: #fff;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 16px;
-            padding: 30px;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            transform: perspective(1000px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        #code::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, 
-                rgba(255, 0, 150, 0.4), 
-                rgba(255, 94, 225, 0.4), 
-                rgba(170, 0, 255, 0.4), 
-                rgba(100, 140, 255, 0.4));
-            z-index: -1;
-            filter: blur(40px);
-            animation: gradientAnimation 5s infinite alternate;
-            border-radius: 25px;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        #code .comments {
-            color: #ffccf5;
-            font-size: 15px;
-            line-height: 1.5;
-            text-shadow: 0 0 8px rgba(255, 0, 128, 0.6);
-            position: relative;
-            display: inline-block;
-            padding-left: 15px;
-            font-style: italic;
-        }
-
-        #code .comments::before {
-            content: '*';
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #ff70c8;
-            font-size: 18px;
-        }
-
-        #code br {
-            margin-bottom: 10px;
-        }
-
-        #code .message {
-            position: relative;
-            display: block;
-            padding: 5px 0 5px 40px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            font-size: 22px;
-            color: #fff;
-            line-height: 1.4;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-        }
-
-        #code .message::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 12px;
-            width: 30px;
-            height: 30px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="rgba(255, 82, 198, 0.8)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
-            background-size: 100%;
-            animation: float 3s ease infinite;
-        }
-
-        .love-statement {
-            display: block;
-            padding: 12px 20px;
-            margin: 15px 0;
-            border-radius: 15px;
-            font-size: 18px;
-            position: relative;
-            z-index: 2;
-            font-weight: 500;
-            letter-spacing: .5px;
-            background: rgba(255, 255, 255, 0.12);
+            width: 45%;
+            padding: 20px;
+            box-sizing: border-box;
+            /* 半透明黑底，让文字更突出 */
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
             backdrop-filter: blur(5px);
-            border-left: 4px solid rgba(255, 105, 180, 0.8);
-            animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        #content .love-statement:nth-child(1) { color: #ffebfd; background: rgba(255, 0, 102, 0.12); }
-        #content .love-statement:nth-child(2) { color: #fff0d8; background: rgba(255, 111, 0, 0.12); animation-delay: 0.1s; }
-        #content .love-statement:nth-child(3) { color: #d8e7ff; background: rgba(0, 119, 255, 0.12); animation-delay: 0.2s; }
-        #content .love-statement:nth-child(4) { color: #e0ffe9; background: rgba(0, 204, 150, 0.12); animation-delay: 0.3s; }
-        #content .love-statement:nth-child(5) { color: #fff4d8; background: rgba(255, 182, 67, 0.12); animation-delay: 0.4s; }
-
-        .heart-comment {
-            display: inline-block;
-            margin: 8px 0;
-            padding: 6px 15px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #ffebfd;
-            background: rgba(255, 0, 128, 0.18);
-            box-shadow: 0 4px 15px rgba(255, 0, 128, 0.15);
-            transform: scale(0.95);
-            animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            transform-origin: left;
+        /* 注释文字样式 */
+        #code .comments {
+            display: block;
+            font-size: 18px;                        /* 字体放大 */
+            font-family: "Courier New", Courier, monospace;
+            color: #aaa;                            /* 初始注释颜色 */
+            animation: glowComments 3s ease-in-out infinite alternate;
         }
 
-        .heart-comment:nth-child(1) { animation-delay: 0.5s; }
-        .heart-comment:nth-child(2) { animation-delay: 0.7s; }
-        .heart-comment:nth-child(3) { animation-delay: 0.9s; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* 正文文字样式 */
+        #code {
+            font-size: 24px;                        /* 正文字体更大 */
+            line-height: 1.5;
+            font-weight: 500;
+            animation: rainbowText 8s linear infinite;  /* 文字渐变动画 */
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.3),
+                         0 0 12px rgba(255, 255, 255, 0.2);
         }
 
-        @keyframes scaleIn {
-            0% { opacity: 0; transform: translateX(-10px) scale(0.9); }
-            100% { opacity: 1; transform: translateX(0) scale(1); }
+        /* 渐变颜色动画 */
+        @keyframes rainbowText {
+            0%   { color: #ff3b3f; }   /* 红 */
+            15%  { color: #ff9f1c; }   /* 橙 */
+            30%  { color: #ffe71c; }   /* 黄 */
+            45%  { color: #2ec4b6; }   /* 青绿 */
+            60%  { color: #3a86ff; }   /* 蓝 */
+            75%  { color: #8338ec; }   /* 紫 */
+            90%  { color: #ff3b3f; }   /* 回到红 */
+            100% { color: #ff3b3f; }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        /* 注释文字发光动画 */
+        @keyframes glowComments {
+            0%   { color: #999; text-shadow: none; }
+            50%  { color: #ddd; text-shadow: 0 0 8px rgba(255,255,255,0.6); }
+            100% { color: #999; text-shadow: none; }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-
+        /* ====== 右侧心形区域（保持不变） ====== */
         #loveHeart {
+            width: 55%;
             position: relative;
-            float: none;
-            width: 670px;
-            height: 620px;
         }
 
-        #garden {
+        #loveHeart canvas#garden {
+            display: block;
             width: 100%;
             height: 100%;
         }
 
-        #messages, #elapseClock, #words, #loveu {
+        #words {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        #messages {
+            font-size: 20px;
+            line-height: 1.4;
             color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        #elapseClock {
+            margin-top: 10px;
+            font-family: digit;
+            font-size: 22px;
+            color: #ffdddd;
         }
 
         #loveu {
-            font-size: 26px;
-            padding: 15px;
+            font-size: 22px;
+            color: #ff6b81;
         }
 
         .signature {
-            font-size: 22px;
-            font-weight: bold;
-            color: #ff70c8;
-            display: inline-block;
-            animation: pulse 2s infinite;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ffd7d9;
         }
 
-        #copyright {
-            text-align: center;
-            padding: 20px;
-            color: #ff77a9;
-            font-size: 14px;
-            font-weight: 500;
+        /* typewriter 效果（保留原有的 js） */
+        #code .typewriter > .originText {
+            display: inline-block;
+        }
+
+        #code .typewriter > .cursor {
+            display: inline-block;
+            background-color: #fff;
+            width: 2px;
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%   { opacity: 1; }
+            50%  { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- 引入原有样式和脚本 -->
+    <link href="css/default.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/garden.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
 </head>
+
 <body>
     <div id="mainDiv">
         <div id="content">
-            <div id="code">
-                <span class="comments">/**</span><br />
-                <span class="comments">* 2016年7月我们相遇</span><br />
-                <span class="comments">* 2020年10月28日我们相爱</span><br />
-                <span class="comments">*/</span><br />
-                
-                <span class="message">Dear 雷宝宝：</span>
-                <span class="message">我想对你说：</span>
-                
-                <span class="love-statement">宝贝，我永远爱你</span>
-                <span class="love-statement">与你相伴是我最大的幸福</span>
-                <span class="love-statement">在未来的日子里</span>
-                <span class="love-statement">我们将一直携手同行</span>
-                <span class="love-statement">至死不渝</span>
-                
-                <br/>
-                
-                <span class="heart-comment"># 也许你不总是快乐</span><br />
-                <span class="heart-comment"># 但我希望你永远快乐</span><br />
-                <span class="heart-comment"># 你的快乐就是我的幸福</span><br />
+            <!-- 左侧文字（优化后） -->
+            <div id="code" class="typewriter">
+                <span class="comments">/**</span>
+                <span class="comments">* 2016年7月我们认识,</span>
+                <span class="comments">* 2020年10月28日我们在一起.</span>
+                <span class="comments">*/</span>
+
+                <p>Dear 雷宝宝：</p>
+                <p>Baby, I love you forever.<br>
+                Being with you is the greatest happiness.<br>
+                Later in the future,<br>
+                We have always been together.<br>
+                Unswerving till death.</p>
+
+                <span class="comments"># 可能有时你不快乐</span>
+                <span class="comments"># 可我要你一直快乐</span>
+                <span class="comments"># 让你快乐是我的快乐</span>
             </div>
+
+            <!-- 右侧心形结构（不变） -->
             <div id="loveHeart">
                 <canvas id="garden"></canvas>
                 <div id="words">
@@ -261,87 +191,54 @@
                         <div id="elapseClock"></div>
                     </div>
                     <div id="loveu">
-                        爱你直到永永远远。<br />
-                        <div class="signature">-阳</div>
+                        爱你直到永永远远。<br>
+                        <div class="signature">- 阳</div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="copyright">
-            Copyright © 2025 <a href='https://dreamfly11712.github.io/my-love/' style="color:#ff70c8;text-decoration:none">https://dreamfly11712.github.io/my-love</a> 2020-9999
+            Copyright © 2025 
+            <a href="https://loveleilei.cyou/">https://loveleilei.cyou/</a> 
+            2020-9999
         </div>
     </div>
-    
-    <script type="text/javascript">
-        // 为简化演示，这里只包含必要的JS功能
-        // 在实际项目中保持原有的garden.js和functions.js功能
 
+    <script type="text/javascript">
         var offsetX = $("#loveHeart").width() / 2;
         var offsetY = $("#loveHeart").height() / 2 - 55;
         var together = new Date();
-        together.setFullYear(2020, 9, 28);
-        together.setHours(0);
+        // 此处月份介于 0 ~ 11 之间。用本地时间表示，如 10 月要用 9 表示。              
+        together.setFullYear(2018, 10, 5);
+        together.setHours(15);
         together.setMinutes(0);
         together.setSeconds(0);
         together.setMilliseconds(0);
-
-        function timeElapse(date){
-            var current = new Date();
-            var seconds = Math.floor((current - date) / 1000);
-            var days = Math.floor(seconds / (3600 * 24));
-            seconds = seconds % (3600 * 24);
-            var hours = Math.floor(seconds / 3600);
-            if (hours < 10) hours = "0" + hours;
-            seconds = seconds % 3600;
-            var minutes = Math.floor(seconds / 60);
-            if (minutes < 10) minutes = "0" + minutes;
-            seconds = seconds % 60;
-            if (seconds < 10) seconds = "0" + seconds;
-            
-            var result = `<span style="color:#ff96e6;font-weight:bold">${days} 天</span> `
-                + `<span style="color:#a5deff;font-weight:bold">${hours}</span> 小时 `
-                + `<span style="color:#7bf1a8;font-weight:bold">${minutes}</span> 分钟 `
-                + `<span style="color:#ffdf7c;font-weight:bold">${seconds}</span> 秒`;
-                
-            document.getElementById("elapseClock").innerHTML = result;
-        }
-
-        // 模拟打字机效果
-        function typeWriter() {
-            const elements = document.querySelectorAll('.love-statement, .heart-comment');
-            elements.forEach((el, index) => {
-                el.style.opacity = 0;
-                setTimeout(() => {
-                    el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-                    el.style.opacity = 1;
-                }, 400 * index);
-            });
-        }
 
         if (!document.createElement('canvas').getContext) {
             var msg = document.createElement("div");
             msg.id = "errorMsg";
             msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
             document.body.appendChild(msg);
-            $("#code").css("display", "none")
+            $("#code").css("display", "none");
             $("#copyright").css("position", "absolute");
             $("#copyright").css("bottom", "10px");
             document.execCommand("stop");
         } else {
             setTimeout(function () {
-                // 在实际项目中调用原始startHeartAnimation()
-                // 这里使用模拟效果
-                document.getElementById("messages").style.display = "block";
-                document.getElementById("loveu").style.display = "block";
-            }, 3000);
+                startHeartAnimation();
+            }, 5000);
 
+            timeElapse(together);
             setInterval(function () {
                 timeElapse(together);
-            }, 1000);
-            
-            // 在页面加载完成后启动打字效果
-            setTimeout(typeWriter, 800);
+            }, 500);
+
+            adjustCodePosition();
+            $("#code").typewriter();
         }
     </script>
 </body>
+
 </html>
