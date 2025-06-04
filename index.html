@@ -2,237 +2,96 @@
 <html>
 
 <head>
-    <meta name="title" content="c">
-    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <!-- 引入自定义字体 -->
-    <style type="text/css">
-        @font-face {
-            font-family: digit;
-            src: url('digital.ttf') format("truetype");
-        }
-
-        /* ====== 整体背景与布局（保持原有结构） ====== */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #111;
-            color: #fff;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-
-        #mainDiv {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #content {
-            position: relative;
-            width: 90%;
-            max-width: 1000px;
-            display: flex;
-        }
-
-        /* ====== 左侧文字区域（优化部分） ====== */
-        #code {
-            width: 45%;
-            padding: 20px;
-            box-sizing: border-box;
-            /* 半透明黑底，让文字更突出 */
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
-            backdrop-filter: blur(5px);
-        }
-
-        /* 注释文字样式 */
-        #code .comments {
-            display: block;
-            font-size: 18px;                        /* 字体放大 */
-            font-family: "Courier New", Courier, monospace;
-            color: #aaa;                            /* 初始注释颜色 */
-            animation: glowComments 3s ease-in-out infinite alternate;
-        }
-
-        /* 正文文字样式 */
-        #code {
-            font-size: 24px;                        /* 正文字体更大 */
-            line-height: 1.5;
-            font-weight: 500;
-            animation: rainbowText 8s linear infinite;  /* 文字渐变动画 */
-            text-shadow: 0 0 6px rgba(255, 255, 255, 0.3),
-                         0 0 12px rgba(255, 255, 255, 0.2);
-        }
-
-        /* 渐变颜色动画 */
-        @keyframes rainbowText {
-            0%   { color: #ff3b3f; }   /* 红 */
-            15%  { color: #ff9f1c; }   /* 橙 */
-            30%  { color: #ffe71c; }   /* 黄 */
-            45%  { color: #2ec4b6; }   /* 青绿 */
-            60%  { color: #3a86ff; }   /* 蓝 */
-            75%  { color: #8338ec; }   /* 紫 */
-            90%  { color: #ff3b3f; }   /* 回到红 */
-            100% { color: #ff3b3f; }
-        }
-
-        /* 注释文字发光动画 */
-        @keyframes glowComments {
-            0%   { color: #999; text-shadow: none; }
-            50%  { color: #ddd; text-shadow: 0 0 8px rgba(255,255,255,0.6); }
-            100% { color: #999; text-shadow: none; }
-        }
-
-        /* ====== 右侧心形区域（保持不变） ====== */
-        #loveHeart {
-            width: 55%;
-            position: relative;
-        }
-
-        #loveHeart canvas#garden {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        #words {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            pointer-events: none;
-        }
-
-        #messages {
-            font-size: 20px;
-            line-height: 1.4;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        #elapseClock {
-            margin-top: 10px;
-            font-family: digit;
-            font-size: 22px;
-            color: #ffdddd;
-        }
-
-        #loveu {
-            font-size: 22px;
-            color: #ff6b81;
-        }
-
-        .signature {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #ffd7d9;
-        }
-
-        /* typewriter 效果（保留原有的 js） */
-        #code .typewriter > .originText {
-            display: inline-block;
-        }
-
-        #code .typewriter > .cursor {
-            display: inline-block;
-            background-color: #fff;
-            width: 2px;
-            animation: blinkCursor 0.8s infinite;
-        }
-
-        @keyframes blinkCursor {
-            0%   { opacity: 1; }
-            50%  { opacity: 0; }
-            100% { opacity: 1; }
-        }
-    </style>
-
-    <!-- 引入原有样式和脚本 -->
-    <link href="css/default.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/garden.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
+	<meta name="title" content="c">
+	<link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<style type="text/css">
+		@font-face {
+			font-family: digit;
+			src: url('digital.ttf') format("truetype");
+		}
+	</style>
+	<link href="css/default.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/garden.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 </head>
 
 <body>
-    <div id="mainDiv">
-        <div id="content">
-            <!-- 左侧文字（优化后） -->
-            <div id="code" class="typewriter">
-                <span class="comments">/**</span>
-                <span class="comments">* 2016年7月我们认识,</span>
-                <span class="comments">* 2020年10月28日我们在一起.</span>
-                <span class="comments">*/</span>
+	<div id="mainDiv">
+		<div id="content">
+			<div id="code">
+				<span class="comments">/**</span><br />
+				<span class="comments">* 2016年7月我们认识,</span><br />
+				<span class="comments">* 2020年10月28日我们在一起.</span><br />
+				<span class="comments">*/</span><br />
+				Dear 雷宝宝：
+				<br />
+				I want to say:<br />
+                                Baby,I love you forever.<br />
+                                Being with you is the
+				greatest happiness.<br />
+                                Later in the future.<br />
+                                We have always been together.<br />
+                                Unswerving till death.<br/>
+				<br />
+				<span class="comments"># 可能有时你不快乐</span><br />
+				<span class="comments"># 可我要你一直快乐</span><br />
+				<span class="comments"># 可以让你快乐是我的快乐</span><br />
+			</div>
+			<div id="loveHeart">
+				<canvas id="garden"></canvas>
+				<div id="words">
+					<div id="messages">
+						亲爱的，这是我们相爱在一起的时光。
+						<div id="elapseClock"></div>
+					</div>
+					<div id="loveu">
+						爱你直到永永远远。<br />
+						<div class="signature">-阳</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="copyright">
+			Copyright © 2025 <a href='https://loveleilei.cyou/'>https://loveleilei.cyou</a> 2020-9999
+		</div>
+	</div>
+	<script type="text/javascript">
+		var offsetX = $("#loveHeart").width() / 2;
+		var offsetY = $("#loveHeart").height() / 2 - 55;
+		var together = new Date();
+		// 此处月份介于 0 ~ 11 之间。用本地时间表示，如 8 月要用 7 表示。
+		together.setFullYear(2018, 10, 5);
+		together.setHours(15);
+		together.setMinutes(0);
+		together.setSeconds(0);
+		together.setMilliseconds(0);
 
-                <p>Dear 雷宝宝：</p>
-                <p>Baby, I love you forever.<br>
-                Being with you is the greatest happiness.<br>
-                Later in the future,<br>
-                We have always been together.<br>
-                Unswerving till death.</p>
+		if (!document.createElement('canvas').getContext) {
+			var msg = document.createElement("div");
+			msg.id = "errorMsg";
+			msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+			document.body.appendChild(msg);
+			$("#code").css("display", "none")
+			$("#copyright").css("position", "absolute");
+			$("#copyright").css("bottom", "10px");
+			document.execCommand("stop");
+		} else {
+			setTimeout(function () {
+				startHeartAnimation();
+			}, 5000);
 
-                <span class="comments"># 可能有时你不快乐</span>
-                <span class="comments"># 可我要你一直快乐</span>
-                <span class="comments"># 让你快乐是我的快乐</span>
-            </div>
+			timeElapse(together);
+			setInterval(function () {
+				timeElapse(together);
+			}, 500);
 
-            <!-- 右侧心形结构（不变） -->
-            <div id="loveHeart">
-                <canvas id="garden"></canvas>
-                <div id="words">
-                    <div id="messages">
-                        亲爱的，这是我们相爱在一起的时光。
-                        <div id="elapseClock"></div>
-                    </div>
-                    <div id="loveu">
-                        爱你直到永永远远。<br>
-                        <div class="signature">- 阳</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        var offsetX = $("#loveHeart").width() / 2;
-        var offsetY = $("#loveHeart").height() / 2 - 55;
-        var together = new Date();
-        // 此处月份介于 0 ~ 11 之间。用本地时间表示，如 10 月要用 9 表示。              
-        together.setFullYear(2018, 10, 5);
-        together.setHours(15);
-        together.setMinutes(0);
-        together.setSeconds(0);
-        together.setMilliseconds(0);
-
-        if (!document.createElement('canvas').getContext) {
-            var msg = document.createElement("div");
-            msg.id = "errorMsg";
-            msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
-            document.body.appendChild(msg);
-            $("#code").css("display", "none");
-            $("#copyright").css("position", "absolute");
-            $("#copyright").css("bottom", "10px");
-            document.execCommand("stop");
-        } else {
-            setTimeout(function () {
-                startHeartAnimation();
-            }, 5000);
-
-            timeElapse(together);
-            setInterval(function () {
-                timeElapse(together);
-            }, 500);
-
-            adjustCodePosition();
-            $("#code").typewriter();
-        }
-    </script>
+			adjustCodePosition();
+			$("#code").typewriter();
+		}
+	</script>
 </body>
 
 </html>
